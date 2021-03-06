@@ -1,10 +1,13 @@
 package com.codepath.apps.restclienttemplate;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Adapter;
@@ -20,6 +23,7 @@ import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import okhttp3.Headers;
 
@@ -39,6 +43,15 @@ public class TimelineActivity extends AppCompatActivity {
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timeline);
+
+        ActionBar bar = getSupportActionBar();
+        assert bar != null;
+        bar.setDisplayShowTitleEnabled(false);
+        ColorDrawable colorDrawable
+                = new ColorDrawable(Color.parseColor("#00ACEE"));
+        bar.setBackgroundDrawable(colorDrawable);
+        bar.setLogo(R.drawable.ic_logo_white);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
 
         client = TwitterApp.getRestClient(this);
 
